@@ -31,7 +31,10 @@ steps:
     sourceFolder: '$(Build.SourcesDirectory)'
     contents: 'package.json' 
     targetFolder: $(Build.ArtifactStagingDirectory)/npm
-  displayName: 'Copy package.json'   
+  displayName: 'Copy package.json'
+
+- task: ArchiveFiles@2
+  displayName: 'Archive $(Build.BinariesDirectory)'
 
 - task: PublishPipelineArtifact@1
   inputs:
