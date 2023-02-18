@@ -11,5 +11,5 @@ jobs:
         matrix:
             node-version: [14.x]
     steps:
-      - run: npm install
+      - run: npm ci
       - run: npm build
