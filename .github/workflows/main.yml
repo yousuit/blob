@@ -28,25 +28,18 @@ jobs:
     - name: Download all workflow run artifacts
       uses: actions/download-artifact@v3
       with:
-        name: artif
+        name: node-app
         path: |
             dist
     - name: Archive production artifacts
       uses: actions/upload-artifact@v3
       with:
-        name: dist-without-markdown
+        name: node-app
         path: |
             dist
             !dist/**/*.md
-   
-    - uses: actions/checkout@v1
-
-    - run: mkdir -p path/to/artifact
-
-    - run: echo hello > path/to/artifact/world.txt
-
     - uses: fixpoint/azblob-upload-artifact@v4
       with:
         connection-string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
-        name: my-artifact
-        path: path/to/artifact
+        name: node-app
+        path: dist/node-app
