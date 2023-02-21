@@ -12,10 +12,11 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '14.x'
+    versionSpec: '18.x'
   displayName: 'Install Node.js'
 
 - script: |
+    npm i -g gatsby-cli
     npm install
     CI=true npm run build
   displayName: 'gatsby build'
