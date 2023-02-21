@@ -17,5 +17,11 @@ steps:
 
 - script: |
     npm install
-    npm run build
-  displayName: 'npm install and build'
+    CI=true npm run build
+  displayName: 'gatsby build'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'public' # public is the name of the default build output folder
+    ArtifactName: 'src/public' # this can be called anything you like
+    publishLocation: 'Container'
