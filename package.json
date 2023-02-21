@@ -108,7 +108,7 @@
   "engines": {
     "npm": "<=8.19.3",
     "node": "<=18.13.0"
-  }
+  },
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -119,4 +119,5 @@
     "type-check": "tsc",
     "lint": "eslint –ignore-path .gitignore 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "npm run lint –fix"
+}
 }
