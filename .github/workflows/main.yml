@@ -20,15 +20,19 @@ jobs:
     - run: npm install
     - run: npm run build --if-present
     - run: npm test
-    
-    - uses: actions/checkout@v1
-
-    - run: mkdir -p path/to/artifact
-
-    - run: echo hello > path/to/artifact/world.txt
-
-    - uses: fixpoint/azblob-upload-artifact@v4
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@v2
       with:
-        connection-string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
-        name: my-artifact
-        path: path/to/artifact
+        name: _dist
+        path: .
+
+    - uses: actions/checkout@v2
+    - uses: bacongobbler/azure-blob-storage-upload@main
+      with:
+        source_dir: _dist
+        container_name: www
+        connection_string: ${{ secrets.ConnectionString }}
+        extra_args: '--pattern *.tar.gz'
+        # WARNING: this will overwrite existing blobs in your blob storage
+        overwrite: 'true'
+
