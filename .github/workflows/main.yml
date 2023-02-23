@@ -34,11 +34,11 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: production
-        path: ./build
+        path: /home/runner/work/blob/blob
 
     - name: Deploy the website
       uses: tibor19/static-website-deploy@v2
       with:
         enabled-static-website: 'true'
-        folder: ./build
+        folder: /home/runner/work/blob/blob/production
         connection-string: ${{ secrets.CONNECTION_STRING }}
