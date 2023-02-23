@@ -47,12 +47,11 @@ jobs:
         path: |
             dist
             !dist/**/*.md
-    - uses: actions/checkout@v2
-    - uses: bacongobbler/azure-blob-storage-upload@main
+    - name: Checkout the code
+      uses: actions/checkout@v3
+    - name: Deploy the website
+      uses: tibor19/static-website-deploy@v2
       with:
-        source_dir: dist
-        container_name: www
-        connection_string: ${{ secrets.ConnectionString }}
-        extra_args: '--pattern *.tar.gz'
-        # WARNING: this will overwrite existing blobs in your blob storage
-        overwrite: 'true'
+        enabled-static-website: 'true'
+        folder: dist
+        connection-string: ${{ secrets.CONNECTION_STRING }}
