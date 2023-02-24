@@ -39,7 +39,7 @@ jobs:
     - uses: LanceMcCarthy/Action-AzureBlobUpload@v2
       name: Azure Blob Upload with Destination folder defined
       with:
-          connection_string: ${{ secrets.YourAzureBlobConnectionString }}
+          connection_string: ${{ secrets.CONNECTION_STRING }}
           container_name: $web
           source_folder: /home/runner/work/blob/blob
           destination_folder: QF
