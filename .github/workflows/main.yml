@@ -35,8 +35,6 @@ jobs:
       with:
         name: production
         path: /home/runner/work/blob/blob
-    - uses: actions/checkout@v2
-    - uses: chabad360/hugo-actions@master
     - uses: edjufy/azure-blob-storage-upload@v1.3.0
       with:
         source_dir: '/home/runner/work/blob/blob/'
