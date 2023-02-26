@@ -29,16 +29,10 @@ jobs:
     - run: npm install
     - run: npm run build --if-present
     - run: npm test
-  #Upload Artifact
-    - name: Upload production-ready build files
-      uses: actions/upload-artifact@v3
-      with:
-        name: production
-        path: /home/runner/work/blob/blob
-        
-    - uses: actions/upload-artifact@v3
-      with:
-        source_dir: '/home/runner/work/blob/blob/'
-        container_name: '$web'
-        connection_string: ${{ secrets.CONNECTION_STRING }}
-        sync: true
+    - name: Azure upload  
+      uses: azure/CLI@v1  
+      with:  
+        azcliversion: 2.0.72  
+        inlineScript: |  
+         az storage blob delete-batch -s "\$web" --connection-string "${{ secrets.CONNECTION_STRING }}"  
+         az storage blob upload-batch -d "\$web" -s public --connection-string "${{ secrets.CONNECTION_STRING }}"  
