@@ -35,7 +35,8 @@ jobs:
       with:
         name: production
         path: /home/runner/work/blob/blob
-    - uses: edjufy/azure-blob-storage-upload@v1.3.0
+        
+    - uses: actions/upload-artifact@v3
       with:
         source_dir: '/home/runner/work/blob/blob/'
         container_name: '$web'
